@@ -38,6 +38,9 @@ showTimeRangePicker({
   /// label for end time
   String toText = "To",
 
+  //// label for cancel button
+  String cancelButtonLabel = "Cancel",
+
   /// use 24 hours or am / pm
   bool use24HourFormat = true,
 
@@ -136,6 +139,7 @@ showTimeRangePicker({
         onEndChange: onEndChange,
         fromText: fromText,
         toText: toText,
+        cancelButtonLabel: cancelButtonLabel,
         interval: interval,
         padding: padding,
         strokeWidth: strokeWidth,
@@ -192,6 +196,8 @@ class TimeRangePicker extends StatefulWidget {
   final String toText;
   final String fromText;
 
+  final String cancelButtonLabel;
+
   final double padding;
   final double strokeWidth;
   final double handlerRadius;
@@ -239,6 +245,7 @@ class TimeRangePicker extends StatefulWidget {
     this.onEndChange,
     this.fromText = "From",
     this.toText = "To",
+    this.cancelButtonLabel = "Cancel",
     this.interval = const Duration(minutes: 5),
     this.padding = 36,
     this.strokeWidth = 12,
@@ -664,7 +671,7 @@ class TimeRangePickerState extends State<TimeRangePicker>
       ButtonBar(
         children: <Widget>[
           TextButton(
-            child: Text(localizations.cancelButtonLabel),
+            child: Text(widget.cancelButtonLabel),
             onPressed: _cancel,
           ),
           TextButton(
