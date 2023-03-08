@@ -693,45 +693,43 @@ class TimeRangePickerState extends State<TimeRangePicker>
             (ClockGestureRecognizer instance) {},
           ),
         },
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: Container(
-            color: Colors.white.withOpacity(0),
-            child: Center(
-              child: CustomPaint(
-                key: _circleKey,
-                painter: ClockPainter(
-                    activeTime: _activeTime,
-                    startAngle: _startAngle,
-                    endAngle: _endAngle,
-                    disabledStartAngle: _disabledStartAngle,
-                    disabledEndAngle: _disabledEndAngle,
-                    radius: _radius,
-                    strokeWidth: widget.strokeWidth,
-                    handlerRadius: widget.handlerRadius,
-                    strokeColor: widget.strokeColor ?? themeData.primaryColor,
-                    handlerColor: widget.handlerColor ?? themeData.primaryColor,
-                    selectedColor:
-                        widget.selectedColor ?? themeData.primaryColorLight,
-                    backgroundColor:
-                        widget.backgroundColor ?? Colors.grey.withOpacity(0.3),
-                    disabledColor:
-                        widget.disabledColor ?? Colors.red.withOpacity(0.5),
-                    paintingStyle: widget.paintingStyle,
-                    ticks: widget.ticks,
-                    ticksColor: widget.ticksColor,
-                    ticksLength: widget.ticksLength,
-                    ticksWidth: widget.ticksWidth,
-                    ticksOffset: widget.ticksOffset,
-                    labels: widget.labels ?? new List.empty(),
-                    labelStyle:
-                        widget.labelStyle ?? themeData.textTheme.bodyText1,
-                    labelOffset: widget.labelOffset,
-                    rotateLabels: widget.rotateLabels,
-                    autoAdjustLabels: widget.autoAdjustLabels,
-                    offsetRad: _offsetRad),
-                size: Size.fromRadius(_radius),
-              ),
+        child: Container(
+          padding: EdgeInsets.all(30.0),
+          color: Colors.white.withOpacity(0),
+          child: Center(
+            child: CustomPaint(
+              key: _circleKey,
+              painter: ClockPainter(
+                  activeTime: _activeTime,
+                  startAngle: _startAngle,
+                  endAngle: _endAngle,
+                  disabledStartAngle: _disabledStartAngle,
+                  disabledEndAngle: _disabledEndAngle,
+                  radius: _radius,
+                  strokeWidth: widget.strokeWidth,
+                  handlerRadius: widget.handlerRadius,
+                  strokeColor: widget.strokeColor ?? themeData.primaryColor,
+                  handlerColor: widget.handlerColor ?? themeData.primaryColor,
+                  selectedColor:
+                      widget.selectedColor ?? themeData.primaryColorLight,
+                  backgroundColor:
+                      widget.backgroundColor ?? Colors.grey.withOpacity(0.3),
+                  disabledColor:
+                      widget.disabledColor ?? Colors.red.withOpacity(0.5),
+                  paintingStyle: widget.paintingStyle,
+                  ticks: widget.ticks,
+                  ticksColor: widget.ticksColor,
+                  ticksLength: widget.ticksLength,
+                  ticksWidth: widget.ticksWidth,
+                  ticksOffset: widget.ticksOffset,
+                  labels: widget.labels ?? new List.empty(),
+                  labelStyle:
+                      widget.labelStyle ?? themeData.textTheme.bodyText1,
+                  labelOffset: widget.labelOffset,
+                  rotateLabels: widget.rotateLabels,
+                  autoAdjustLabels: widget.autoAdjustLabels,
+                  offsetRad: _offsetRad),
+              size: Size.fromRadius(_radius),
             ),
           ),
         ),
