@@ -310,23 +310,23 @@ class TimeRangePickerState extends State<TimeRangePicker>
   void initState() {
     _offsetRad = (widget.clockRotation * pi / 180);
 
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     setAngles();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => setRadius());
+    WidgetsBinding.instance.addPostFrameCallback((_) => setRadius());
 
     super.initState();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   @override
   void didChangeMetrics() {
     super.didChangeMetrics();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => setRadius());
+    WidgetsBinding.instance.addPostFrameCallback((_) => setRadius());
   }
 
   setRadius() {
@@ -668,7 +668,7 @@ class TimeRangePickerState extends State<TimeRangePicker>
   }
 
   Widget buildButtonBar({required MaterialLocalizations localizations}) =>
-      ButtonBar(
+      OverflowBar(
         children: <Widget>[
           TextButton(
             child: Text(widget.cancelButtonLabel),
@@ -724,7 +724,7 @@ class TimeRangePickerState extends State<TimeRangePicker>
                   ticksOffset: widget.ticksOffset,
                   labels: widget.labels ?? new List.empty(),
                   labelStyle:
-                      widget.labelStyle ?? themeData.textTheme.bodyText1,
+                      widget.labelStyle ?? themeData.textTheme.bodyLarge,
                   labelOffset: widget.labelOffset,
                   rotateLabels: widget.rotateLabels,
                   autoAdjustLabels: widget.autoAdjustLabels,
@@ -744,7 +744,7 @@ class TimeRangePickerState extends State<TimeRangePicker>
         backgroundColor = themeData.primaryColor;
         break;
       case Brightness.dark:
-        backgroundColor = themeData.backgroundColor;
+        backgroundColor = themeData.colorScheme.surface;
         break;
     }
 
