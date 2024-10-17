@@ -38,6 +38,9 @@ showTimeRangePicker({
   /// label for end time
   String toText = "To",
 
+  //// label for cancel button
+  String cancelButtonLabel = "Cancel",
+
   /// use 24 hours or am / pm
   bool use24HourFormat = true,
 
@@ -136,6 +139,7 @@ showTimeRangePicker({
         onEndChange: onEndChange,
         fromText: fromText,
         toText: toText,
+        cancelButtonLabel: cancelButtonLabel,
         interval: interval,
         padding: padding,
         strokeWidth: strokeWidth,
@@ -192,6 +196,8 @@ class TimeRangePicker extends StatefulWidget {
   final String toText;
   final String fromText;
 
+  final String cancelButtonLabel;
+
   final double padding;
   final double strokeWidth;
   final double handlerRadius;
@@ -239,6 +245,7 @@ class TimeRangePicker extends StatefulWidget {
     this.onEndChange,
     this.fromText = "From",
     this.toText = "To",
+    this.cancelButtonLabel = "Cancel",
     this.interval = const Duration(minutes: 5),
     this.padding = 36,
     this.strokeWidth = 12,
@@ -303,23 +310,23 @@ class TimeRangePickerState extends State<TimeRangePicker>
   void initState() {
     _offsetRad = (widget.clockRotation * pi / 180);
 
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
     setAngles();
-    WidgetsBinding.instance.addPostFrameCallback((_) => setRadius());
+    WidgetsBinding.instance?.addPostFrameCallback((_) => setRadius());
 
     super.initState();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     super.dispose();
   }
 
   @override
   void didChangeMetrics() {
     super.didChangeMetrics();
-    WidgetsBinding.instance.addPostFrameCallback((_) => setRadius());
+    WidgetsBinding.instance?.addPostFrameCallback((_) => setRadius());
   }
 
   setRadius() {
@@ -664,7 +671,7 @@ class TimeRangePickerState extends State<TimeRangePicker>
       OverflowBar(
         children: <Widget>[
           TextButton(
-            child: Text(localizations.cancelButtonLabel),
+            child: Text(widget.cancelButtonLabel),
             onPressed: _cancel,
           ),
           TextButton(
@@ -686,45 +693,43 @@ class TimeRangePickerState extends State<TimeRangePicker>
             (ClockGestureRecognizer instance) {},
           ),
         },
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: Container(
-            color: Colors.white.withOpacity(0),
-            child: Center(
-              child: CustomPaint(
-                key: _circleKey,
-                painter: ClockPainter(
-                    activeTime: _activeTime,
-                    startAngle: _startAngle,
-                    endAngle: _endAngle,
-                    disabledStartAngle: _disabledStartAngle,
-                    disabledEndAngle: _disabledEndAngle,
-                    radius: _radius,
-                    strokeWidth: widget.strokeWidth,
-                    handlerRadius: widget.handlerRadius,
-                    strokeColor: widget.strokeColor ?? themeData.primaryColor,
-                    handlerColor: widget.handlerColor ?? themeData.primaryColor,
-                    selectedColor:
-                        widget.selectedColor ?? themeData.primaryColorLight,
-                    backgroundColor:
-                        widget.backgroundColor ?? Colors.grey.withOpacity(0.3),
-                    disabledColor:
-                        widget.disabledColor ?? Colors.red.withOpacity(0.5),
-                    paintingStyle: widget.paintingStyle,
-                    ticks: widget.ticks,
-                    ticksColor: widget.ticksColor,
-                    ticksLength: widget.ticksLength,
-                    ticksWidth: widget.ticksWidth,
-                    ticksOffset: widget.ticksOffset,
-                    labels: widget.labels ?? new List.empty(),
-                    labelStyle:
-                        widget.labelStyle ?? themeData.textTheme.bodyLarge,
-                    labelOffset: widget.labelOffset,
-                    rotateLabels: widget.rotateLabels,
-                    autoAdjustLabels: widget.autoAdjustLabels,
-                    offsetRad: _offsetRad),
-                size: Size.fromRadius(_radius),
-              ),
+        child: Container(
+          padding: EdgeInsets.all(30.0),
+          color: Colors.white.withOpacity(0),
+          child: Center(
+            child: CustomPaint(
+              key: _circleKey,
+              painter: ClockPainter(
+                  activeTime: _activeTime,
+                  startAngle: _startAngle,
+                  endAngle: _endAngle,
+                  disabledStartAngle: _disabledStartAngle,
+                  disabledEndAngle: _disabledEndAngle,
+                  radius: _radius,
+                  strokeWidth: widget.strokeWidth,
+                  handlerRadius: widget.handlerRadius,
+                  strokeColor: widget.strokeColor ?? themeData.primaryColor,
+                  handlerColor: widget.handlerColor ?? themeData.primaryColor,
+                  selectedColor:
+                      widget.selectedColor ?? themeData.primaryColorLight,
+                  backgroundColor:
+                      widget.backgroundColor ?? Colors.grey.withOpacity(0.3),
+                  disabledColor:
+                      widget.disabledColor ?? Colors.red.withOpacity(0.5),
+                  paintingStyle: widget.paintingStyle,
+                  ticks: widget.ticks,
+                  ticksColor: widget.ticksColor,
+                  ticksLength: widget.ticksLength,
+                  ticksWidth: widget.ticksWidth,
+                  ticksOffset: widget.ticksOffset,
+                  labels: widget.labels ?? new List.empty(),
+                  labelStyle:
+                      widget.labelStyle ?? themeData.textTheme.bodyLarge,
+                  labelOffset: widget.labelOffset,
+                  rotateLabels: widget.rotateLabels,
+                  autoAdjustLabels: widget.autoAdjustLabels,
+                  offsetRad: _offsetRad),
+              size: Size.fromRadius(_radius),
             ),
           ),
         ),
