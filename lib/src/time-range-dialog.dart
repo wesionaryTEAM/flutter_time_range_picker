@@ -310,23 +310,23 @@ class TimeRangePickerState extends State<TimeRangePicker>
   void initState() {
     _offsetRad = (widget.clockRotation * pi / 180);
 
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     setAngles();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => setRadius());
+    WidgetsBinding.instance.addPostFrameCallback((_) => setRadius());
 
     super.initState();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   @override
   void didChangeMetrics() {
     super.didChangeMetrics();
-    WidgetsBinding.instance?.addPostFrameCallback((_) => setRadius());
+    WidgetsBinding.instance.addPostFrameCallback((_) => setRadius());
   }
 
   setRadius() {
